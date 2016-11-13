@@ -8,6 +8,8 @@ require_once "../vendor/autoload.php";
 
 class EmailProcessorTest extends TestCase
 {
+    protected $result;
+
     public function setUp()
     {
 
@@ -20,12 +22,12 @@ class EmailProcessorTest extends TestCase
 
     public function testEmailWork()
     {
-        $file = '../log.dat';
+
         $id = mt_rand(1, 99);
 
         $mail = new EmailProcessor();
-        $this->assertTrue($mail->mxRecordValidate() !== false);
-        $this->assertTrue($mail->sendEmail($id) !== false);
+        $this->assertTrue($mail->mxRecordValidate());
+        $this->assertTrue($mail->sendEmail($id));
         $result = $mail->checkEmail($id);
         if ($result === false) {
             for ($i = 0; $i < 5; $i++) {
@@ -38,10 +40,13 @@ class EmailProcessorTest extends TestCase
         }
 
         if ($result === false) {
-            $this->assertTrue($mail->checkEmail($id) !== false);
+            $this->assertTrue($mail->checkEmail($id));
         } else {
-            file_put_contents($file, $result, FILE_APPEND);
+            $file = '../log.dat';
+            $time = date('d-m-Y H:i:s');
+            $result = '[' . $time . '] ' . $result . "\r\n";
+            $put = file_put_contents($file, $result, FILE_APPEND);
+            $this->assertNotEmpty($put);
         }
-
     }
 }

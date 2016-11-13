@@ -80,7 +80,7 @@ class EmailProcessor
         $list = [];
         while (!feof($sopen)) {
             $str = rtrim(fgets($sopen, 1024));
-            $list[] = "$str\r\n";
+            $list[] = $str;
             if (trim($str) === '.') {
                 break;
             }
@@ -123,7 +123,7 @@ class EmailProcessor
 
             while (!feof($sopen)) {
                 $str = trim(fgets($sopen, 1024));
-                $messageData .= "$str\r\n";
+                $messageData .= $str;
                 if (trim($str) == '.') {
                     break;
                 }
