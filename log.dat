@@ -1,0 +1,6 @@
+Received: from [109.86.211.251] (helo=Telega-Server)
+by bst01.sputnikmedia.net with esmtpsa (UNKNOWN:DHE-RSA-AES128-GCM-SHA256:128)
+(Exim 4.80.1)
+(envelope-from <testinbox@bigmir.net>)
+id 1c60ox-0002Bd-Nm
+for testinbox@bigmir.net; Sun, 13 Nov 2016 21:52:07 +0200
